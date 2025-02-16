@@ -1,0 +1,41 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+virtualenv/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+pip-wheel-metadata/
+share/python-wheels/
+
+# Docker
+Dockerfile
+docker
