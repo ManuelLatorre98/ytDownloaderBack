@@ -22,7 +22,7 @@ def download():
     data = request.get_json()
     video_url = data.get('video_url')
     no_play_list = data.get('no_play_list')
-    user_cookies = request.cookies.get('user_cookies')
+    user_cookies = request.headers.get('Cookie')
     if not video_url:
         return jsonify({'error': 'Missing video url parameter'}), 400
 

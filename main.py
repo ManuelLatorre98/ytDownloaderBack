@@ -33,7 +33,7 @@ def download_audio(video_url, no_play_list, download_path='./', cookies=None):
         }],
         'noplaylist': no_play_list,
         'outtmpl': f'%(title)s_{video_id}.%(ext)s',
-        'cookies': cookies
+        'cookie': cookies
         
     }
 
