@@ -3,6 +3,7 @@ import sys
 import json
 import os
 import uuid
+COOKIE_FILE_PATH = 'cookies.txt'
 
 def get_video_info(video_url):
     ydl_opts = {
@@ -22,7 +23,7 @@ def get_video_info(video_url):
     return video_info
 
 
-def download_audio(video_url, no_play_list, download_path='./', cookies=None):
+def download_audio(video_url, no_play_list, download_path='./'):
     video_id = str(uuid.uuid4())
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -33,7 +34,7 @@ def download_audio(video_url, no_play_list, download_path='./', cookies=None):
         }],
         'noplaylist': no_play_list,
         'outtmpl': f'%(title)s_{video_id}.%(ext)s',
-        'cookie': cookies
+        'cookiefile': COOKIE_FILE_PATH,
         
     }
 
