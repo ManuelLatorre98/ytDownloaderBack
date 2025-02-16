@@ -22,11 +22,11 @@ def download():
     data = request.get_json()
     video_url = data.get('video_url')
     no_play_list = data.get('no_play_list')
-
+    user_cookies = request.cookies.get('user_cookies')
     if not video_url:
         return jsonify({'error': 'Missing video url parameter'}), 400
 
-    file_name = download_audio(video_url, no_play_list=True)
+    file_name = download_audio(video_url, no_play_list=True, cookies = user_cookies)
 
     @after_this_request
     def remove_file(response):
