@@ -4,18 +4,27 @@ from main import get_video_info, download_audio
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://localhost:3000"}})
 
 @app.route('/api', methods=['GET'])
 def info():
     print(request)
+
+    print("COOKIES: ", request.cookies)
+
+    print("LENOFCOOKIES: ", len(request.cookies))
+    print(request.headers)
     video_url = request.args.get('video_url')
     
     if not video_url:
         return jsonify({'error': 'Missing video url parameter'}), 400
 
     video_info = get_video_info(video_url)
-    return jsonify(video_info)
+
+    response = jsonify(video_info)
+
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    return response 
 
 @app.route('/api', methods=['POST'])
 def download():
@@ -38,4 +47,5 @@ def download():
     return send_file(file_name, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=('certs/cert.pem', 'certs/key.pem'))
+
